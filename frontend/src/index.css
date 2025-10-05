@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  color: #2b2d42;
+  background-color: #f5f7ff;
+  padding: 0;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  color: white;
+}
+
+.mode-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.mode-switcher button {
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.mode-switcher button.active {
+  background: white;
+  color: #4361ee;
+  font-weight: 600;
+}
+
+.form-builder {
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  background: #f8f9fa;
+}
+
+.form-title input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: #ffffff;
+}
+
+.builder-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .builder-container {
+    flex-direction: row;
+    padding: 2rem;
+  }
+}
+
+/* Field Palette */
+.fields-palette {
+  flex: 0 0 260px;
+  padding: 1.25rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.fields-palette h3 {
+  margin-bottom: 1rem;
+  color: #4361ee;
+  font-size: 1.1rem;
+}
+
+.field-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.2s ease-out;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field-item:hover {
+  background: #e6e9ff;
+  border-color: #4361ee;
+  color: #4361ee;
+}
+
+.field-item::before {
+  content: "≡";
+  color: #6c757d;
+  margin-right: 0.5rem;
+}
+
+.form-canvas {
+  flex: 1;
+  min-height: 400px;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 2px dashed #d0d7ff;
+  transition: all 0.2s ease-out;
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.form-canvas.active-drop {
+  border-color: #4361ee;
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.empty-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6c757d;
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-prompt::before {
+  content: "↓";
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #4361ee;
+}
+
+.form-field {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-out;
+}
+
+.form-field:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.field-header h4 {
+  color: #4361ee;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #6c757d;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease-out;
+}
+
+.remove-btn:hover {
+  background: #ffebee;
+  color: #ff3333;
+}
+
+.field-config {
+  padding: 0.5rem 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2b2d42;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-out;
+  background: #ffffff;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+button {
+  padding: 0.75rem 1.25rem;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+button:hover {
+  background-color: #3a0ca3;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.form-preview {
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.preview-field {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.required {
+  color: #ff3333;
+}
+
+.table-preview {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 1rem;
+}
+
+th {
+  background: #e6e9ff;
+  color: #4361ee;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  background: white;
+}
+
+.error {
+  border-color: #ff3333 !important;
+}
+
+.error-message {
+  color: #ff3333;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.submission-success {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.submission-success h2 {
+  color: #4bb543;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.submission-success p {
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .app {
+    margin: 0;
+    border-radius: 0;
+  }
+  .builder-container {
+    padding: 1rem;
+  }
+  .form-canvas {
+    min-height: 300px;
+  }
+  .form-field, .preview-field {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 1.25rem;
+  }
+  .navigation-buttons {
+    flex-direction: column;
+  }
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+}
